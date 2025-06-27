@@ -1,0 +1,26 @@
+# .github/workflows/auto-merge.yml
+name: 🔁 Auto Merge dev → main
+
+on:
+  push:
+    branches:
+      - experiment  # Trigger when changes are pushed to 'dev'
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🔀 Merge experiment into edge
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin edge
+          git checkout edge
+          git merge origin/experiment --allow-unrelated-histories --no-edit
+          git push origin edge
+
