@@ -23,4 +23,3 @@ jobs:
           git checkout edge
           git merge origin/experiment --allow-unrelated-histories --no-edit
           git push origin edge
-
