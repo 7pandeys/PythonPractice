@@ -3,7 +3,7 @@ name: 🔁 Scheduled Rebase dev → main
 
 on:
   schedule:
-    - cron: '30 18 * * *'  # 12:00 AM IST = 6:30 PM UTC
+    - cron: '0 19 * * *'  # Runs daily at 12:30 AM IST
   workflow_dispatch:  # Optional: allows manual trigger
 
 jobs:
