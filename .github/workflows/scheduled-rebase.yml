@@ -1,0 +1,29 @@
+# .github/workflows/scheduled-rebase.yml
+name: 🔁 Scheduled Rebase dev → main
+
+on:
+  schedule:
+    - cron: '30 18 * * *'  # 12:00 AM IST = 6:30 PM UTC
+  workflow_dispatch:  # Optional: allows manual trigger
+
+jobs:
+  rebase:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout dev branch
+        uses: actions/checkout@v4
+        with:
+          ref: dev
+          token: ${{ secrets.GITHUB_TOKEN }}  # Use a PAT with write access
+          fetch-depth: 0
+
+      - name: 🔀 Rebase dev onto main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin edge
+          git rebase origin/edge
+
+      - name: 🚀 Push rebased dev
+        run: |
+          git push origin experiment --force-with-lease
