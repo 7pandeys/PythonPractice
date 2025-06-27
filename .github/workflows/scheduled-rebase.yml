@@ -13,7 +13,7 @@ jobs:
       - name: ⬇️ Checkout dev branch
         uses: actions/checkout@v4
         with:
-          ref: dev
+          ref: experiment
           token: ${{ secrets.GITHUB_TOKEN }}  # Use a PAT with write access
           fetch-depth: 0
 
