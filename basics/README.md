@@ -10,8 +10,14 @@ Here are some of the Python coding challenges covered in this project:
 
 3. 🧱 **Create a Class with Getter and Setter**  
    Demonstrate basic object-oriented principles with encapsulation via `@property` and `@setter`.
-
 ---
+### List of files:
+```
+├── Car_class.py
+├── README.md
+├── count_occurances.py
+└── palindrome.py
+```
 
 📌 _More problems coming soon! Stay tuned for updates._
 ![Shark](https://img.shields.io/badge/Shark-Badge-blue?style=for-the-badge&logo=github)
