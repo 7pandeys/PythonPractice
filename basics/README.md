@@ -14,3 +14,4 @@ Here are some of the Python coding challenges covered in this project:
 ---
 
 📌 _More problems coming soon! Stay tuned for updates._
+![Shark](https://img.shields.io/badge/Shark-Badge-blue?style=for-the-badge&logo=github)
