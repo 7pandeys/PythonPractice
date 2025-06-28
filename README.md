@@ -13,6 +13,23 @@ Welcome to my Python playground—a personal space where learning meets experime
 - `notebooks/` – Jupyter explorations of concepts, patterns, and Python libraries.
 - `ml_snippets/` – Snippets and experiments with machine learning frameworks like Scikit-learn or PyTorch.
 
+## Structure
+
+```├── README.md
+├── algorithms
+├── basics
+│   ├── Car_class.py
+│   ├── README.md
+│   ├── count_occurances.py
+│   └── palindrome.py
+├── data_structures
+├── ml_snippets
+├── notebooks
+│   ├── LightweightFineTuning.ipynb
+│   ├── Palindrome.ipynb
+│   └── count_occurances.ipynb
+└── projects
+```
 ---
 
 ## 🚀 Why This Exists
@@ -28,5 +45,6 @@ Python is more than a language—it's a mindset. Through consistent practice, I 
 2. Clone the repo:  
    ```bash
    git clone https://github.com/7pandeys/PythonPractice.git
-   
+   ```
+
 
