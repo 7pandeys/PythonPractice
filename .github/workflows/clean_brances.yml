@@ -1,0 +1,34 @@
+name: 🧹 Clean Up Old Branches
+
+on:
+  schedule:
+    - cron: '0 3 * * 0' # Runs every Sunday at 3:00 AM UTC
+  workflow_dispatch:     # Also allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  delete-old-branches:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Required to fetch all branches
+
+      - name: 🔎 Fetch remote branches
+        run: git fetch --all
+
+      - name: 🧽 Delete all branches except 'experiment' and 'edge'
+        run: |
+          protected=("experiment" "edge")
+          git for-each-ref --format='%(refname:short)' refs/remotes/origin/ | while read branch; do
+            branch_name=${branch#origin/}
+            if [[ ! " ${protected[@]} " =~ " ${branch_name} " && "$branch_name" != "HEAD" ]]; then
+              echo "Deleting $branch_name"
+              git push origin --delete "$branch_name"
+            else
+              echo "Keeping $branch_name"
+            fi
+          done

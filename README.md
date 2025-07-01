@@ -1,4 +1,5 @@
-[![coverage](coverage.svg)](https://github.com/<your-username>/<your-repo>/actions)
+[![coverage](badges/coverage.svg)](https://github.com/7pandeys/pythonpractice/actions)
+[![coverage](badges/commit-count.svg)](https://github.com/7pandeys/pythonpractice/actions)
 
 # 🐍 Python Practice Repository
 
