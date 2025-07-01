@@ -42,7 +42,6 @@ jobs:
         run: |
           mkdir -p badges/
           mv coverage.svg badges/
-          mv commit-count.svg badges/
 
           git config user.name github-actions
           git config user.email github-actions@users.noreply.github.com
