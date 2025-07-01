@@ -30,9 +30,12 @@ jobs:
 
       - name: 🔢 Generate Commit Count Badge
         run: |
+          git fetch --unshallow || true
           COMMIT_COUNT=$(git rev-list --count HEAD)
           mkdir -p badges
+          echo "Commit count: ${COMMIT_COUNT}"
           curl -sSL "https://img.shields.io/static/v1?label=Commits&message=${COMMIT_COUNT}&color=lightgray&labelColor=%230175C2&style=flat&logo=github" -o badges/commit-count.svg
+          ls -lh badges/
 
       - name: 🚀 Commit & push badges
         if: github.ref == 'refs/heads/main'
