@@ -21,7 +21,7 @@ jobs:
       - name: Run tests and generate badge
         run: |
           coverage run -m pytest -vv
-          coverage-badge -o coverage.svg
+          coverage-badge -f -o coverage.svg
 
       - name: Commit badge
         run: |
