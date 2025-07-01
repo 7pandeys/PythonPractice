@@ -1,0 +1,4 @@
+coverage
+coverage-badge
+pytest
+pytest-cov

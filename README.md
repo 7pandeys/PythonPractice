@@ -1,3 +1,5 @@
+[![coverage](coverage.svg)](https://github.com/<your-username>/<your-repo>/actions)
+
 # 🐍 Python Practice Repository
 
 Welcome to my Python playground—a personal space where learning meets experimentation. This repository is dedicated to sharpening my skills through coding challenges, mini-projects, and explorations across Python fundamentals, data structures, algorithms, and real-world use cases.
