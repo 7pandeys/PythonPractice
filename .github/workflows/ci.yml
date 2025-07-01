@@ -38,7 +38,7 @@ jobs:
           ls -lh badges/
 
       - name: 🚀 Commit & push badges
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/edge'
         run: |
           mkdir -p badges/
           mv coverage.svg badges/
