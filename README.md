@@ -1,7 +1,7 @@
 # PythonPractice
 
-[![Coverage](badges/coverage.svg)](https://github.com/7pandeys/7pandeys.github.io/actions)
-[![Commits](badges/commit-count.svg)](https://github.com/7pandeys/7pandeys.github.io/commits/main)
+[![Coverage](badges/coverage.svg)](https://github.com/7pandeys/PythonPractice/actions)
+[![Commits](badges/commit-count.svg)](https://github.com/7pandeys/pythonpractice/commits/edge)
 
 # 🐍 Python Practice Repository
 
