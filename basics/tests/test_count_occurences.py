@@ -1,4 +1,4 @@
-from count_occurences import count_occurrence
+from basics.count_occurences import count_occurrence
 
 def test_count_occurrence():
     input_str = "a lazy dog jumps over the sleeping wolf"
