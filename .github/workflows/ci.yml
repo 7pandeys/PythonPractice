@@ -29,13 +29,10 @@ jobs:
           coverage-badge -f -o coverage.svg
 
       - name: 🔢 Generate Commit Count Badge
-        uses: FMorschel/commit-count-badge@v1
-        with:
-          repository: '7pandeys/7pandeys.github.io'
-          author: '7pandeys'
-          outputPath: 'commit-count.svg'
-          text: 'Commits'
-          token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          COMMIT_COUNT=$(git rev-list --count HEAD)
+          mkdir -p badges
+          curl -sSL "https://img.shields.io/static/v1?label=Commits&message=${COMMIT_COUNT}&color=lightgray&labelColor=%230175C2&style=flat&logo=github" -o badges/commit-count.svg
 
       - name: 🚀 Commit & push badges
         if: github.ref == 'refs/heads/main'
@@ -50,3 +47,4 @@ jobs:
           git add badges/*.svg || true
           git commit -m "📈 Update coverage and commit badges" || echo "No changes to commit"
           git push
+
