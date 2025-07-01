@@ -4,7 +4,7 @@ var = "a lazy dog jumps over the sleeping wolf"
 def count_occurrence(var):
     occurrence = {}
     for character in var:
-        if character in occurrence.keys() and character == " ":
+        if character in occurrence.keys():
             occurrence[character] = occurrence[character] + 1
         else:
             occurrence[character] = 1
