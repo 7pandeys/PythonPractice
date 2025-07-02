@@ -1,0 +1,52 @@
+name: 🧪 Test • 📊 Coverage • 🧮 Commit Badge
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  ci-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout repo
+        uses: actions/checkout@v4
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install coverage coverage-badge pytest
+
+      - name: 🧪 Run tests + generate coverage
+        run: |
+          coverage run -m pytest -vv
+          coverage-badge -f -o coverage.svg
+
+      - name: 🔢 Generate Commit Count Badge
+        run: |
+          git fetch --unshallow || true
+          COMMIT_COUNT=$(git rev-list --count HEAD)
+          mkdir -p badges
+          echo "Commit count: ${COMMIT_COUNT}"
+          curl -sSL "https://img.shields.io/static/v1?label=Commits&message=${COMMIT_COUNT}&color=lightgray&labelColor=%230175C2&style=flat&logo=github" -o badges/commit-count.svg
+          ls -lh badges/
+
+      - name: 🚀 Commit & push badges
+        if: github.ref == 'refs/heads/edge'
+        run: |
+          mkdir -p badges/
+          mv coverage.svg badges/
+
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+
+          git add badges/*.svg || true
+          git commit -m "📈 Update coverage and commit badges" || echo "No changes to commit"
+          git push
+
