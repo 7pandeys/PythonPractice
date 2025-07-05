@@ -1,29 +1,31 @@
-# .github/workflows/scheduled-rebase.yml
-name: 🔁 Scheduled Rebase dev → main
+name: 🔁 Scheduled Sync experiment ← edge
 
 on:
   schedule:
     - cron: '0 19 * * *'  # Runs daily at 12:30 AM IST
-  workflow_dispatch:  # Optional: allows manual trigger
+  workflow_dispatch:
 
 jobs:
-  rebase:
+  sync:
     runs-on: ubuntu-latest
     steps:
-      - name: ⬇️ Checkout dev branch
+      - name: ⬇️ Checkout experiment branch
         uses: actions/checkout@v4
         with:
           ref: experiment
-          token: ${{ secrets.GITHUB_TOKEN }}  # Use a PAT with write access
+          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
-      - name: 🔀 Rebase dev onto main
+      - name: 🔧 Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git fetch origin edge
-          git rebase origin/edge
 
-      - name: 🚀 Push rebased dev
+      - name: 🔁 Fetch and merge edge into experiment
         run: |
-          git push origin experiment --force-with-lease
+          git fetch origin edge
+          git merge origin/edge -X theirs --no-edit || true
+
+      - name: 🚀 Push updated experiment
+        run: |
+          git push origin experiment
