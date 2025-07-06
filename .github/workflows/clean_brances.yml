@@ -26,9 +26,14 @@ jobs:
           git for-each-ref --format='%(refname:short)' refs/remotes/origin/ | while read branch; do
             branch_name=${branch#origin/}
             if [[ ! " ${protected[@]} " =~ " ${branch_name} " && "$branch_name" != "HEAD" ]]; then
-              echo "Deleting $branch_name"
-              git push origin --delete "$branch_name"
+              if git ls-remote --exit-code --heads origin "$branch_name" > /dev/null; then
+                echo "Deleting $branch_name"
+                git push origin --delete "$branch_name"
+              else
+                echo "Skipping $branch_name — doesn't exist remotely"
+              fi
             else
               echo "Keeping $branch_name"
             fi
           done
+
